@@ -1,0 +1,312 @@
+/* ======================================================================
+   BijaoCafé — Hoja de estilos principal
+   Este archivo complementa las utilidades de Tailwind (cargadas por CDN
+   en index.html) con estilos propios: texturas, botones, animaciones,
+   menú móvil y los nuevos componentes (WhatsApp flotante, volver arriba).
+   ====================================================================== */
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+  body { font-family: 'Inter', sans-serif; background: #FDFBF7; color: #2B1D14; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  section { scroll-margin-top: 88px; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .leaf-divider {
+    width: 28px;
+    height: 28px;
+    color: #3F5D3A;
+  }
+
+  /* Subtle organic texture: faint bijao-leaf pattern, kept low-opacity to preserve the minimalist feel */
+  .leaf-texture {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath d='M80 26c-20 13-38 31-38 54 0 15 12 27 27 27 27 0 41-27 41-58 0-9-4-18-4-18s-15 3-26-5Z' fill='none' stroke='%233F5D3A' stroke-opacity='0.055' stroke-width='1.3'/%3E%3Cpath d='M80 26C68 44 62 66 62 88' fill='none' stroke='%233F5D3A' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+  .leaf-texture-dark {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath d='M80 26c-20 13-38 31-38 54 0 15 12 27 27 27 27 0 41-27 41-58 0-9-4-18-4-18s-15 3-26-5Z' fill='none' stroke='%23F8F4EC' stroke-opacity='0.035' stroke-width='1.3'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  /* Reusable botanical section divider (thin line + small leaf mark) */
+  .botanical-rule {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .botanical-rule .rule-line {
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.3;
+    flex: 1 1 auto;
+  }
+  .botanical-rule svg { flex-shrink: 0; }
+
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+  .wa-btn-solid {
+    background-color: #2B1D14;
+    color: #FDFBF7;
+  }
+  .wa-btn-solid:hover {
+    background-color: #3F5D3A;
+    transform: translateY(-1px);
+  }
+  .wa-btn-outline {
+    border: 1px solid #2B1D14;
+    color: #2B1D14;
+    background-color: transparent;
+  }
+  .wa-btn-outline:hover {
+    background-color: #2B1D14;
+    color: #FDFBF7;
+    transform: translateY(-1px);
+  }
+
+  .nav-link {
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #3F5D3A;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px -12px rgba(43, 29, 20, 0.18);
+  }
+
+  /* Hamburger states */
+  #menu-toggle.is-open .hamburger-line:nth-child(1) {
+    transform: translateY(6.25px) rotate(45deg);
+  }
+  #menu-toggle.is-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle.is-open .hamburger-line:nth-child(3) {
+    transform: translateY(-6.25px) rotate(-45deg);
+  }
+
+  #mobile-menu.is-open {
+    max-height: 480px;
+  }
+
+  .mobile-nav-link {
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .mobile-nav-link:hover,
+  .mobile-nav-link:active {
+    border-color: #3F5D3A;
+    color: #3F5D3A;
+  }
+
+/* ============ NUEVO: botón flotante de WhatsApp ============ */
+.wa-float {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background-color: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px -8px rgba(43, 29, 20, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wa-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 30px -8px rgba(43, 29, 20, 0.5);
+}
+.wa-float svg { width: 28px; height: 28px; }
+
+/* Halo de pulso discreto para llamar la atención sin ser invasivo */
+.wa-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background-color: #25D366;
+  opacity: 0.55;
+  animation: wa-pulse 2.4s ease-out infinite;
+  z-index: -1;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.45; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float::before { animation: none; display: none; }
+}
+
+/* ============ NUEVO: botón "Volver arriba" ============ */
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5.75rem;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background-color: #2B1D14;
+  color: #FDFBF7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -8px rgba(43, 29, 20, 0.45);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover { background-color: #3F5D3A; }
+.back-to-top svg { width: 18px; height: 18px; }
+
+/* ============ NUEVO: sección Proceso del café ============ */
+.proceso-step {
+  position: relative;
+}
+.proceso-step .proceso-num {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ============ NUEVO: galería ============ */
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+.galeria-item img {
+  transition: transform 0.5s ease;
+}
+.galeria-item:hover img {
+  transform: scale(1.06);
+}
+
+/* ============ NUEVO: Lightbox (foto ampliada al hacer clic) ============ */
+
+/* Cursor y pequeño ícono de lupa al pasar el mouse sobre una foto clicable */
+.lightbox-img {
+  cursor: zoom-in;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+.lightbox-img:hover {
+  opacity: 0.92;
+}
+
+/* Overlay de pantalla completa */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  background-color: rgba(20, 14, 9, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+}
+.lightbox-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* La imagen ampliada */
+.lightbox-content {
+  max-width: min(92vw, 900px);
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.6);
+  transform: scale(0.94);
+  transition: transform 0.25s ease;
+}
+.lightbox-overlay.is-open .lightbox-content {
+  transform: scale(1);
+}
+
+/* Texto (alt de la imagen) debajo, para dar contexto */
+.lightbox-caption {
+  color: #FDFBF7;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-align: center;
+  max-width: 90vw;
+}
+
+/* Botón de cerrar */
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background-color: rgba(253, 251, 247, 0.1);
+  color: #FDFBF7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.lightbox-close:hover {
+  background-color: rgba(253, 251, 247, 0.2);
+  transform: rotate(90deg);
+}
+.lightbox-close svg { width: 20px; height: 20px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-overlay, .lightbox-content, .lightbox-close { transition: none; }
+}
