@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  BIJAOCAFÉ — index.html  (Versión con Carrito de Compras)
+  ============================================================================
+  ✏️  NÚMERO DE WHATSAPP  →  Busca  WHATSAPP_NUMBER  en el <script> al final.
+  ✏️  IMÁGENES  →  Coloca tus fotos en /images/ con los nombres que se usan abajo.
+  ✏️  VIDEO     →  Coloca tu video en /video/reel-bijaocafe.mp4
+  ✏️  LOGO      →  images/logo.jpeg
+  ============================================================================
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BijaoCafé — Café colombiano, en su forma más pura</title>
+<meta name="description" content="BijaoCafé: café colombiano de Finca La Palma. Líneas Rendidor, Tradición, SuaveLavado y Natural. Cotiza o compra por WhatsApp.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z' fill='%23F8F4EC' stroke='%233F5D3A' stroke-width='1.5'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  window.tailwind = window.tailwind || {};
+  window.tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:      '#2B1D14',
+          cream:    '#F8F4EC',
+          paper:    '#FDFBF7',
+          leaf:     '#3F5D3A',
+          leafdark: '#2D4429',
+          forest:   '#1F3323',
+          kraft:    '#E9DDBE',
+          kraftdark:'#D6C295',
+          caramel:  '#B98B4E',
+          line:     '#E3DDD1',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body:    ['Inter', 'sans-serif'],
+          mono:    ['"JetBrains Mono"', 'monospace'],
+        }
+      }
+    }
+  };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ─── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+body { font-family: 'Inter', sans-serif; background: #FDFBF7; color: #2B1D14; -webkit-font-smoothing: antialiased; }
+section { scroll-margin-top: 88px; }
+
+/* ─── Leaf SVG textures ──────────────────────────────────────── */
+.leaf-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath d='M80 26c-20 13-38 31-38 54 0 15 12 27 27 27 27 0 41-27 41-58 0-9-4-18-4-18s-15 3-26-5Z' fill='none' stroke='%233F5D3A' stroke-opacity='0.055' stroke-width='1.3'/%3E%3Cpath d='M80 26C68 44 62 66 62 88' fill='none' stroke='%233F5D3A' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 160px 160px;
+}
+.leaf-texture-dark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath d='M80 26c-20 13-38 31-38 54 0 15 12 27 27 27 27 0 41-27 41-58 0-9-4-18-4-18s-15 3-26-5Z' fill='none' stroke='%23F8F4EC' stroke-opacity='0.035' stroke-width='1.3'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 160px 160px;
+}
+
+/* ─── Reveal on scroll ───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Leaf divider icon ──────────────────────────────────────── */
+.leaf-divider { width: 28px; height: 28px; color: #3F5D3A; }
+
+/* ─── WA Buttons ─────────────────────────────────────────────── */
+.wa-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.75rem; border-radius: 999px;
+  font-size: 0.875rem; letter-spacing: 0.02em; font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.wa-btn-solid { background-color: #2B1D14; color: #FDFBF7; border: none; }
+.wa-btn-solid:hover { background-color: #3F5D3A; transform: translateY(-2px); box-shadow: 0 6px 18px -6px rgba(63,93,58,0.4); }
+.wa-btn-outline { border: 1.5px solid #2B1D14; color: #2B1D14; background-color: transparent; }
+.wa-btn-outline:hover { background-color: #2B1D14; color: #FDFBF7; transform: translateY(-2px); }
+
+/* ─── Nav links ──────────────────────────────────────────────── */
+.nav-link { position: relative; padding-bottom: 3px; transition: color 0.2s ease; }
+.nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px; background-color: #3F5D3A; transition: width 0.25s ease; }
+.nav-link:hover::after { width: 100%; }
+.mobile-nav-link { padding-bottom: 2px; border-bottom: 1px solid transparent; transition: border-color 0.2s ease, color 0.2s ease; }
+.mobile-nav-link:hover { border-color: #3F5D3A; color: #3F5D3A; }
+
+/* ─── Hamburger ──────────────────────────────────────────────── */
+.hamburger-line { display: block; width: 100%; height: 1.5px; background-color: #2B1D14; transform-origin: center; }
+#menu-toggle.is-open .hamburger-line:nth-child(1) { transform: translateY(6.25px) rotate(45deg); }
+#menu-toggle.is-open .hamburger-line:nth-child(2) { opacity: 0; }
+#menu-toggle.is-open .hamburger-line:nth-child(3) { transform: translateY(-6.25px) rotate(-45deg); }
+.hamburger-line { transition: transform 0.3s ease, opacity 0.2s ease; }
+#mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+#mobile-menu.is-open { max-height: 560px; }
+
+/* ─── Product card image hover ───────────────────────────────── */
+.card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 14px 32px -14px rgba(43,29,20,0.18); }
+/* ── Vitrina showcase images (cuadradas, recorte limpio) ──── */
+.card-img-wrap {
+  overflow: hidden; border-radius: 0.625rem;
+  border: 1px solid #E3DDD1; margin-bottom: 0.875rem;
+}
+.card-img-wrap img {
+  width: 100%; display: block;
+  aspect-ratio: 1/1; object-fit: cover;
+}
+
+/* ── Catalog product cards (portrait, producto completo) ──── */
+.card-img-product {
+  background: #F8F4EC;
+}
+.card-img-product img {
+  aspect-ratio: 3/4;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 0.875rem 1.25rem 0.5rem;
+}
+
+/* ─── Proceso steps ──────────────────────────────────────────── */
+.proceso-step { position: relative; }
+
+/* ─── Add to cart button ─────────────────────────────────────── */
+.btn-add-cart {
+  display: flex; align-items: center; justify-content: center; gap: 0.375rem;
+  width: 100%; margin-top: 0.625rem; padding: 0.5rem 0.75rem;
+  border: 1.5px solid #2B1D14; border-radius: 999px;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500;
+  color: #2B1D14; background: transparent; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.btn-add-cart:hover { background: #3F5D3A; border-color: #3F5D3A; color: white; transform: translateY(-1px); }
+.btn-add-cart.is-added { background: #3F5D3A; border-color: #3F5D3A; color: white; }
+
+/* ─── Floating WA button ─────────────────────────────────────── */
+.wa-float {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 40;
+  width: 3.25rem; height: 3.25rem; border-radius: 9999px;
+  background-color: #25D366; color: white;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.wa-float:hover { transform: scale(1.09); box-shadow: 0 6px 22px rgba(37,211,102,0.55); }
+.wa-float svg { width: 1.65rem; height: 1.65rem; }
+
+/* ─── Floating cart button ───────────────────────────────────── */
+.cart-float {
+  position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 40;
+  width: 3.25rem; height: 3.25rem; border-radius: 9999px;
+  background-color: #2B1D14; color: #FDFBF7;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(43,29,20,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer; border: none; outline: none;
+}
+.cart-float:hover { transform: scale(1.09); box-shadow: 0 6px 22px rgba(43,29,20,0.38); }
+.cart-float svg { width: 1.35rem; height: 1.35rem; }
+.cart-float-badge {
+  position: absolute; top: -4px; right: -4px;
+  min-width: 1.25rem; height: 1.25rem; border-radius: 9999px;
+  background: #B98B4E; color: white; font-size: 0.62rem; font-weight: 700;
+  display: none; align-items: center; justify-content: center; padding: 0 0.2rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.cart-float-badge.has-items { display: flex; }
+
+/* ─── Back to top ───────────────────────────────────────────── */
+.back-to-top {
+  position: fixed; bottom: 9.5rem; right: 1.5rem; z-index: 40;
+  width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+  background-color: rgba(43,29,20,0.55); color: #FDFBF7;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  cursor: pointer; border: none;
+}
+.back-to-top.is-visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { transform: translateY(-2px); background: #2B1D14; }
+.back-to-top svg { width: 1rem; height: 1rem; }
+
+/* ─── Cart badge in nav ──────────────────────────────────────── */
+.cart-nav-btn {
+  position: relative; width: 2.25rem; height: 2.25rem; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; color: #2B1D14;
+  transition: background 0.2s ease;
+}
+.cart-nav-btn:hover { background: rgba(43,29,20,0.07); }
+.cart-nav-badge {
+  position: absolute; top: -2px; right: -2px; min-width: 1.1rem; height: 1.1rem;
+  border-radius: 9999px; background: #3F5D3A; color: white;
+  font-size: 0.58rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;
+  display: none; align-items: center; justify-content: center; padding: 0 0.2rem;
+  border: 1.5px solid #FDFBF7;
+}
+.cart-nav-badge.has-items { display: flex; }
+
+/* ─── Lightbox ───────────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,0.92);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 1.5rem;
+}
+.lightbox-overlay.is-open { opacity: 1; pointer-events: auto; }
+.lightbox-close {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+  background: rgba(255,255,255,0.12); color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s ease; border: none;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
+.lightbox-content {
+  display: block; flex-shrink: 0;
+  max-width: 96vw; max-height: 88vh;
+  object-fit: contain;                 /* la imagen siempre completa, sin recortes */
+  border-radius: 0.5rem;
+}
+.lightbox-caption { color: rgba(255,255,255,0.6); font-size: 0.8rem; text-align: center; margin-top: 0.875rem; font-family: 'JetBrains Mono', monospace; }
+.lightbox-img { cursor: pointer; }
+
+/* ─── Cart overlay ───────────────────────────────────────────── */
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(31,51,35,0.45); backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.cart-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+/* ─── Cart drawer ────────────────────────────────────────────── */
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 91;
+  width: min(100vw, 28rem); background: #FDFBF7;
+  box-shadow: -6px 0 32px rgba(43,29,20,0.14);
+  transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.cart-drawer.is-open { transform: translateX(0); }
+
+.cart-drawer-header {
+  padding: 1.25rem 1.25rem 0.875rem; border-bottom: 1px solid #E3DDD1;
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+  background: #FDFBF7;
+}
+.cart-drawer-header h2 {
+  font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: #2B1D14;
+}
+.cart-drawer-header .cart-item-count {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(43,29,20,0.45); margin-left: 0.4rem;
+}
+.cart-close-x {
+  width: 2rem; height: 2rem; border-radius: 9999px;
+  background: rgba(43,29,20,0.07); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: #2B1D14;
+  transition: background 0.2s ease; flex-shrink: 0;
+}
+.cart-close-x:hover { background: rgba(43,29,20,0.14); }
+
+.cart-body { flex: 1 1 auto; overflow-y: auto; padding: 0.5rem 0; }
+
+.cart-empty-state {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 3.5rem 1.5rem; text-align: center; color: rgba(43,29,20,0.35);
+  gap: 0.75rem;
+}
+.cart-empty-state svg { width: 2.5rem; height: 2.5rem; }
+.cart-empty-state p { font-size: 0.875rem; line-height: 1.5; }
+
+.cart-items-list { padding: 0 1.25rem; }
+
+.cart-item {
+  display: flex; gap: 0.75rem; padding: 0.875rem 0; border-bottom: 1px solid #E3DDD1;
+  align-items: flex-start;
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item-thumb {
+  width: 3.25rem; height: 3.25rem; border-radius: 0.5rem;
+  object-fit: cover; border: 1px solid #E3DDD1; flex-shrink: 0;
+  background: #E9DDBE;
+}
+.cart-item-info { flex: 1 1 auto; min-width: 0; }
+.cart-item-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 600; color: #2B1D14; line-height: 1.3; }
+.cart-item-variant { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: rgba(43,29,20,0.5); margin-top: 0.1rem; }
+.cart-item-price { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #B98B4E; margin-top: 0.25rem; }
+.cart-item-actions { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem; }
+.cart-qty-btn {
+  width: 1.5rem; height: 1.5rem; border-radius: 9999px;
+  border: 1px solid #E3DDD1; background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 600; color: #2B1D14; line-height: 1;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cart-qty-btn:hover { background: #E9DDBE; border-color: #D6C295; }
+.cart-qty-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 600;
+  min-width: 1.5rem; text-align: center; color: #2B1D14;
+}
+.cart-item-remove {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(43,29,20,0.28); transition: color 0.15s ease; padding: 2px;
+}
+.cart-item-remove:hover { color: #c0392b; }
+.cart-item-remove svg { width: 0.875rem; height: 0.875rem; }
+
+/* ─── Cart form ──────────────────────────────────────────────── */
+.cart-form-section {
+  padding: 1rem 1.25rem 0.25rem; border-top: 1px solid #E3DDD1;
+  flex-shrink: 0; background: #FDFBF7;
+}
+.cart-form-section h3 {
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 600;
+  color: rgba(43,29,20,0.45); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.cart-field { margin-bottom: 0.5rem; }
+.cart-input, .cart-textarea {
+  width: 100%; padding: 0.55rem 0.75rem;
+  border: 1px solid #E3DDD1; border-radius: 0.5rem;
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #2B1D14;
+  background: white; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+.cart-input:focus, .cart-textarea:focus { border-color: #3F5D3A; box-shadow: 0 0 0 3px rgba(63,93,58,0.1); }
+.cart-input::placeholder, .cart-textarea::placeholder { color: rgba(43,29,20,0.3); }
+.cart-textarea { resize: none; height: 3rem; }
+.cart-input.is-invalid { border-color: #c0392b; }
+
+/* ─── Cart footer ────────────────────────────────────────────── */
+.cart-footer { padding: 0.875rem 1.25rem 1.25rem; border-top: 1px solid #E3DDD1; flex-shrink: 0; background: #FDFBF7; }
+.cart-subtotal {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 0.875rem; margin-bottom: 0.875rem; border-bottom: 1px solid #E3DDD1;
+}
+.cart-subtotal-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; color: rgba(43,29,20,0.55); }
+.cart-subtotal-amount { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 600; color: #2B1D14; }
+.cart-confirm-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.875rem; border-radius: 999px;
+  background: #2B1D14; color: #FDFBF7;
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.875rem; font-weight: 500;
+  border: none; cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cart-confirm-btn:hover:not(:disabled) { background: #3F5D3A; transform: translateY(-2px); box-shadow: 0 6px 18px -6px rgba(63,93,58,0.45); }
+.cart-confirm-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+.cart-clear-btn {
+  display: block; width: 100%; margin-top: 0.5rem; padding: 0.4rem;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; color: rgba(43,29,20,0.35);
+  text-align: center; transition: color 0.15s ease;
+}
+.cart-clear-btn:hover { color: #c0392b; }
+.cart-shipping-note {
+  display: flex; align-items: flex-start; gap: 0.4rem;
+  background: #F8F4EC; border: 1px solid #E3DDD1; border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem; margin-bottom: 0.875rem;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem;
+  color: rgba(43,29,20,0.6); line-height: 1.45;
+}
+.cart-shipping-note svg { width: 0.875rem; height: 0.875rem; flex-shrink: 0; margin-top: 1px; color: #B98B4E; }
+
+/* ─── Toast notification ─────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 5.5rem; left: 50%; transform: translateX(-50%) translateY(12px);
+  z-index: 95; background: #2B1D14; color: #FDFBF7;
+  padding: 0.6rem 1.25rem; border-radius: 999px;
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500;
+  opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap; pointer-events: none;
+}
+.toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── Image placeholder fallback ─────────────────────────────── */
+img.bc-placeholder { object-fit: none; background: #E9DDBE; }
+
+/* ─── Mobile responsive overrides ───────────────────────────── */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+/* Buttons: full-width on mobile when stacked */
+.btn-full-mobile { display: flex; width: 100%; justify-content: center; }
+@media (min-width: 640px) { .btn-full-mobile { display: inline-flex; width: auto; } }
+
+/* WA button: slightly smaller on mobile */
+@media (max-width: 639px) {
+  .wa-btn { padding: 0.75rem 1.25rem; font-size: 0.8125rem; }
+  section { scroll-margin-top: 72px; }
+}
+
+/* Catalog cards: tighter text on mobile (2-col grid) */
+@media (max-width: 639px) {
+  .catalog-card-price { font-size: 0.875rem; }
+  .catalog-card-weight { font-size: 0.8125rem; }
+  .catalog-card-yield  { font-size: 0.65rem; }
+  .btn-add-cart { font-size: 0.65rem; padding: 0.4rem 0.5rem; gap: 0.25rem; }
+  .btn-add-cart svg { width: 0.65rem; height: 0.65rem; }
+}
+
+/* Catalog section header: wrap gracefully */
+@media (max-width: 480px) {
+  .catalog-line-header { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+}
+
+/* Proceso grid: enforce 2×4 on medium, 1×8 on small */
+@media (max-width: 479px) {
+  .proceso-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Video section: stack on small */
+@media (max-width: 479px) {
+  .video-block { flex-direction: column; }
+  .video-block video { width: 100%; max-width: 200px; align-self: center; }
+}
+
+/* Cart: full width on mobile */
+@media (max-width: 480px) {
+  .cart-drawer { max-width: 100vw; }
+  .cart-drawer-header { padding: 1rem; }
+  .cart-body { padding: 0; }
+  .cart-items-list { padding: 0 1rem; }
+  .cart-form-section { padding: 0.875rem 1rem 0.25rem; }
+  .cart-footer { padding: 0.875rem 1rem 1.25rem; }
+}
+
+/* Toast: keep clear of floating buttons */
+@media (max-width: 639px) {
+  .toast { bottom: 9.75rem; font-size: 0.75rem; }
+}
+
+/* Back-to-top: adjust stacking for mobile */
+@media (max-width: 639px) {
+  .back-to-top { bottom: 9.5rem; right: 1rem; width: 2.25rem; height: 2.25rem; }
+  .cart-float  { bottom: 5.25rem; right: 1rem; width: 3rem; height: 3rem; }
+  .wa-float    { bottom: 1.25rem; right: 1rem; width: 3rem; height: 3rem; }
+}
+
+/* Nuestra raíz: remove negative overflow decoration on mobile */
+@media (max-width: 639px) {
+  .raiz-decoration { display: none; }
+}
+</style>
+</head>
+
+<body class="font-body text-ink antialiased">
+
+<!-- ════════════════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-paper/90 backdrop-blur-md border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 md:px-10 h-20 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-2 font-display font-semibold text-lg tracking-tight shrink-0">
+      <img src="images/logo.jpeg" alt="Logo BijaoCafé" class="h-8 lg:h-10 w-auto object-contain">
+      BijaoCafé
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-ink/80">
+      <a href="#home"         class="nav-link">Home</a>
+      <a href="#nosotros"     class="nav-link">Nosotros</a>
+      <a href="#proceso"      class="nav-link">Proceso</a>
+      <a href="#catalogo"     class="nav-link">Catálogo</a>
+      <a href="#b2b"          class="nav-link">B2B &amp; Comodatos</a>
+      <a href="#marca-blanca" class="nav-link">Marca Blanca</a>
+      <a href="#contacto"     class="nav-link">Contacto</a>
+    </nav>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-2 shrink-0">
+      <!-- WA button (desktop) -->
+      <a href="#" data-wa-msg="Hola, quiero información sobre BijaoCafé ☕️"
+         target="_blank" rel="noopener"
+         class="hidden sm:inline-flex wa-btn wa-btn-solid text-xs lg:text-sm py-2.5 px-4">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.06h-.01a8.1 8.1 0 0 1-4.14-1.14l-.3-.18-3.09.78.82-3.02-.2-.31a8.1 8.1 0 0 1-1.24-4.28c0-4.48 3.65-8.13 8.16-8.13 2.18 0 4.22.85 5.76 2.39a8.06 8.06 0 0 1 2.39 5.75c0 4.48-3.65 8.14-8.15 8.14Zm4.47-6.1c-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.78.97-.14.16-.29.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.36-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.45-.59 1.66-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+        WhatsApp
+      </a>
+
+      <!-- Cart button (nav) -->
+      <button id="cart-nav-btn" type="button" aria-label="Ver carrito" class="cart-nav-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cart-nav-badge" class="cart-nav-badge">0</span>
+      </button>
+
+      <!-- Hamburger (mobile / tablet) -->
+      <button id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"
+              class="lg:hidden relative w-9 h-9 flex items-center justify-center">
+        <div class="w-5 h-4 relative flex flex-col justify-between">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden bg-paper border-t border-line">
+    <nav class="flex flex-col px-6 py-6 gap-5 text-base font-medium text-ink/85">
+      <a href="#home"         class="mobile-nav-link">Home</a>
+      <a href="#nosotros"     class="mobile-nav-link">Nosotros</a>
+      <a href="#proceso"      class="mobile-nav-link">Proceso</a>
+      <a href="#catalogo"     class="mobile-nav-link">Catálogo</a>
+      <a href="#b2b"          class="mobile-nav-link">B2B &amp; Comodatos</a>
+      <a href="#marca-blanca" class="mobile-nav-link">Marca Blanca</a>
+      <a href="#contacto"     class="mobile-nav-link">Contacto</a>
+      <a href="#" data-wa-msg="Hola, quiero información sobre BijaoCafé"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-solid justify-center mt-2">
+        ¡Escríbenos por WhatsApp!
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════════════════
+     HOME — HERO
+════════════════════════════════════════════════════════════ -->
+<section id="home" class="pt-40 pb-24 md:pt-52 md:pb-32">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-leaf mb-6 reveal">Finca La Palma · San Francisco, Antioquia</p>
+    <h1 class="font-display text-4xl md:text-6xl leading-tight font-medium tracking-tight reveal">
+      Café colombiano.<br class="hidden md:block"> En su forma más pura.
+    </h1>
+    <p class="mt-7 text-base md:text-lg text-ink/70 max-w-xl mx-auto leading-relaxed reveal">
+      Café para todos. Un café para ti.
+    </p>
+    <div class="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 reveal">
+      <a href="#" data-wa-msg="Hola, quiero asesoría personalizada sobre BijaoCafé"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-solid btn-full-mobile justify-center">
+        Asesoría personalizada
+      </a>
+      <a href="#catalogo" class="wa-btn wa-btn-outline btn-full-mobile justify-center">Ver catálogo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     NUESTRA RAÍZ
+════════════════════════════════════════════════════════════ -->
+<section id="raiz" class="pb-24 md:pb-32 relative overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6 relative">
+    <div class="border-t border-line pt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center reveal">
+
+      <!-- Photo -->
+      <div class="relative order-2 md:order-1">
+        <div class="rounded-3xl overflow-hidden border border-line shadow-lg aspect-[4/5] md:aspect-square bg-kraft/30">
+          <img src="images/hoja-bijao.jpeg" alt="Hoja de bijao, la planta que le da nombre a BijaoCafé"
+               class="lightbox-img w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="hidden sm:flex absolute -bottom-6 -right-6 w-20 h-20 rounded-full bg-paper border border-line shadow-md items-center justify-center">
+          <svg viewBox="0 0 24 24" fill="none" class="leaf-divider" stroke="currentColor" stroke-width="1.3">
+            <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+            <path d="M6 21C10 17 14 12 17 6"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="order-1 md:order-2">
+        <svg viewBox="0 0 24 24" fill="none" class="leaf-divider mb-5" stroke="currentColor" stroke-width="1.3">
+          <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+          <path d="M6 21C10 17 14 12 17 6"/>
+        </svg>
+        <h2 class="font-display text-2xl md:text-3xl font-medium mb-4">Nuestra raíz</h2>
+        <p class="text-ink/70 leading-relaxed">
+          Todo comienza en <strong class="text-ink font-medium">Finca La Palma</strong>, en las montañas de
+          <strong class="text-ink font-medium">San Francisco, Antioquia</strong> — el ecosistema agrícola
+          que ha sido el sustento de nuestra familia por generaciones. Entre todo lo que allí se cultiva,
+          un producto se convirtió siempre en el verdadero motor: la hoja de bijao. Nuestro nombre es un
+          homenaje a esa raíz — y la forma en que decidimos darle valor a lo que sembramos.
+        </p>
+        <div class="mt-8 flex items-start gap-5 video-block">
+          <video controls playsinline preload="metadata"
+                 class="rounded-2xl shadow-lg w-36 sm:w-44 aspect-[9/16] object-cover border border-line bg-ink/5 shrink-0">
+            <source src="video/reel-bijaocafe.mp4" type="video/mp4">
+            <a href="video/reel-bijaocafe.mp4" class="underline">Descargar video</a>.
+          </video>
+          <div class="pt-1">
+            <p class="font-display text-sm font-medium mb-1">Conoce Finca La Palma</p>
+            <p class="text-xs text-ink/55 leading-relaxed">Un vistazo en video a nuestra finca y a la hoja que nos da el nombre.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PROPUESTA DE VALOR
+════════════════════════════════════════════════════════════ -->
+<section class="pb-24 md:pb-32">
+  <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+    <div class="text-center md:text-left reveal">
+      <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6 text-caramel mb-3 mx-auto md:mx-0" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7"/></svg>
+      <h3 class="font-display text-lg font-medium mb-2">Calidad sostenida</h3>
+      <p class="text-sm text-ink/65 leading-relaxed">Estándares que no varían con el volumen, lote tras lote.</p>
+    </div>
+    <div class="text-center md:text-left reveal">
+      <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6 text-caramel mb-3 mx-auto md:mx-0" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+      <h3 class="font-display text-lg font-medium mb-2">Trazabilidad</h3>
+      <p class="text-sm text-ink/65 leading-relaxed">Origen colombiano, proceso controlado en cada etapa.</p>
+    </div>
+    <div class="text-center md:text-left reveal">
+      <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6 text-caramel mb-3 mx-auto md:mx-0" stroke="currentColor" stroke-width="1.6"><path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg>
+      <h3 class="font-display text-lg font-medium mb-2">Aliados, no solo proveedores</h3>
+      <p class="text-sm text-ink/65 leading-relaxed">Acompañamiento real para negocios, cafeterías y distribuidores.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     VITRINA DE LÍNEAS
+════════════════════════════════════════════════════════════ -->
+<section class="pb-24 md:pb-32">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 reveal">
+      <div class="group">
+        <div class="card-img-wrap aspect-square shadow-sm">
+          <img src="images/familiarendidor.jpeg" alt="Familia Rendidor" class="lightbox-img" loading="lazy">
+        </div>
+        <a href="#catalogo" class="block mt-3">
+          <p class="font-display text-sm font-medium">Rendidor</p>
+          <p class="text-xs text-ink/55">Cuerpo robusto</p>
+        </a>
+      </div>
+      <div class="group">
+        <div class="card-img-wrap aspect-square shadow-sm">
+          <img src="images/familiatradicion.jpeg" alt="Familia Tradición" class="lightbox-img" loading="lazy">
+        </div>
+        <a href="#catalogo" class="block mt-3">
+          <p class="font-display text-sm font-medium">Tradición</p>
+          <p class="text-xs text-ink/55">Taza suave</p>
+        </a>
+      </div>
+      <div class="group">
+        <div class="card-img-wrap aspect-square shadow-sm">
+          <img src="images/familiasuavelavado.jpeg" alt="Familia SuaveLavado" class="lightbox-img" loading="lazy">
+        </div>
+        <a href="#catalogo" class="block mt-3">
+          <p class="font-display text-sm font-medium">SuaveLavado</p>
+          <p class="text-xs text-ink/55">Notas a cacao</p>
+        </a>
+      </div>
+      <div class="group">
+        <div class="card-img-wrap aspect-square shadow-sm">
+          <img src="images/familianatural.jpeg" alt="Familia Natural" class="lightbox-img" loading="lazy">
+        </div>
+        <a href="#catalogo" class="block mt-3">
+          <p class="font-display text-sm font-medium">Natural</p>
+          <p class="text-xs text-ink/55">Joya de la corona</p>
+        </a>
+      </div>
+    </div>
+    <div class="text-center mt-12 reveal">
+      <a href="#catalogo" class="wa-btn wa-btn-outline">Explorar catálogo completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FRANJA B2B
+════════════════════════════════════════════════════════════ -->
+<section class="py-24 bg-forest text-paper leaf-texture-dark">
+  <div class="max-w-3xl mx-auto px-6 text-center reveal">
+    <h2 class="font-display text-2xl md:text-3xl font-medium mb-4">¿Tienes un negocio? Hablemos.</h2>
+    <p class="text-paper/70 leading-relaxed max-w-xl mx-auto">
+      Cafeterías, restaurantes y distribuidores acceden a condiciones especiales, altamente
+      competitivas. Cada propuesta se construye a la medida.
+    </p>
+    <a href="#" data-wa-msg="Hola, quiero cotizar como negocio"
+       target="_blank" rel="noopener" class="wa-btn mt-8 bg-paper text-ink hover:bg-leaf hover:text-paper">
+      Quiero cotizar como negocio
+    </a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     NOSOTROS
+════════════════════════════════════════════════════════════ -->
+<section id="nosotros" class="py-24 md:py-32">
+  <div class="max-w-3xl mx-auto px-6">
+    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 text-leaf/50 mb-4 reveal" stroke="currentColor" stroke-width="1.4">
+      <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-leaf mb-5 reveal">Nosotros</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium leading-tight mb-8 reveal">Café hecho con propósito.</h2>
+    <p class="text-ink/70 leading-relaxed reveal">
+      BijaoCafé nace de una convicción simple: el buen café no debería ser un lujo reservado
+      para unos pocos, ni un compromiso de calidad para producir en volumen. Trabajamos con
+      caficultores colombianos y procesos cuidados para ofrecer una taza consistente, honesta
+      y memorable — línea tras línea, lote tras lote.
+    </p>
+  </div>
+
+  <!-- Sello Cafés Especiales de Antioquia -->
+  <div class="max-w-5xl mx-auto px-6 mt-20 reveal">
+    <div class="border-t border-line pt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div>
+        <p class="font-mono text-xs tracking-[0.25em] uppercase text-caramel mb-5">Reconocimiento</p>
+        <h3 class="font-display text-2xl md:text-3xl font-medium mb-6">Sello de Cafés Especiales de Antioquia.</h3>
+        <p class="text-ink/70 leading-relaxed mb-4">
+          Nuestra línea <strong class="text-ink font-medium">Natural</strong> recibió el
+          <strong class="text-ink font-medium">Sello de Cafés Especiales de Antioquia</strong>, una
+          distinción de calidad voluntaria que reconoce a los cafés tostados de la región que obtienen
+          más de 85 puntos en la escala de cata — el umbral que marca la diferencia entre un café
+          convencional y uno de especialidad.
+        </p>
+        <p class="text-ink/70 leading-relaxed">
+          Para nosotros, este sello no es solo un reconocimiento: es la confirmación de que el trabajo
+          hecho en Finca La Palma, lote tras lote, se refleja directamente en la taza.
+        </p>
+      </div>
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden border border-line shadow-lg aspect-[4/3] bg-kraft/30">
+          <img src="images/premio-antioquia.jpeg" alt="Sello de Cafés Especiales de Antioquia"
+               class="lightbox-img w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historia: Finca La Palma -->
+  <div class="max-w-3xl mx-auto px-6 mt-20 reveal">
+    <div class="border-t border-line pt-16">
+      <div class="leaf-texture rounded-2xl bg-kraft/30 p-8 md:p-14 relative overflow-hidden">
+        <svg viewBox="0 0 600 40" preserveAspectRatio="none" class="absolute left-0 right-0 bottom-0 w-full h-10 text-forest/10 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M0 34 L60 12 L120 30 L180 6 L240 32 L300 14 L360 30 L420 8 L480 28 L540 16 L600 26"/>
+        </svg>
+        <div class="flex items-center gap-3 mb-3 relative">
+          <svg viewBox="0 0 24 24" fill="none" class="leaf-divider" stroke="currentColor" stroke-width="1.3">
+            <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+            <path d="M6 21C10 17 14 12 17 6"/>
+          </svg>
+          <h3 class="font-display text-xl md:text-2xl font-medium">Finca La Palma</h3>
+        </div>
+        <p class="font-mono text-xs text-caramel uppercase tracking-wide mb-8 relative">San Francisco, Antioquia · Oriente Antioqueño</p>
+        <p class="text-ink/70 leading-relaxed mb-5 relative">
+          Nuestra historia comienza mucho antes del café, en las montañas de
+          <strong class="text-ink font-medium">San Francisco, Antioquia</strong>: el municipio nativo de
+          nuestra familia, un rincón montañoso y biodiverso del Oriente Antioqueño que llevamos con orgullo
+          en cada saco de café. Allí, en Finca La Palma, no cultivamos solo café: es un ecosistema agrícola
+          autosostenible y el sustento de vida de nuestra familia. Conviven, en el mismo terreno, cultivos de
+          limón, borojó, piña, yuca, plátano, guayaba, guanábana, lulo, cilantro, cebolla de rama, cidra,
+          banano, entre muchos otros, junto a un sistema pecuario propio. Es una finca que se sostiene a sí misma,
+          diversa por vocación y por necesidad.
+        </p>
+        <p class="text-ink/70 leading-relaxed mb-5 relative">
+          Entre toda esa diversidad, un producto se convirtió siempre en el verdadero motor económico de la
+          finca: la hoja de tamal, conocida también como hoja de bijao. Antes que el café, fue la hoja de
+          bijao la que sostuvo a nuestra familia — y es a ella a quien rendimos homenaje en nuestro nombre.
+        </p>
+        <p class="text-ink/70 leading-relaxed relative">
+          Con el tiempo decidimos darle valor agregado a nuestro café y unificar, bajo una misma marca,
+          nuestros dos productos más representativos y rentables. Así nace BijaoCafé: un nombre que carga el
+          peso de una historia agrícola completa y de un territorio, y una marca que existe para honrar ese
+          esfuerzo — el de la finca, el de San Francisco, y el de quienes la trabajan cada día.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filosofía -->
+  <div class="max-w-5xl mx-auto px-6 mt-24 grid grid-cols-1 md:grid-cols-3 gap-10 reveal">
+    <div>
+      <h4 class="font-display text-base font-medium mb-2">Origen</h4>
+      <p class="text-sm text-ink/65 leading-relaxed">Trabajamos con caficultura colombiana, priorizando prácticas sostenibles y relaciones de largo plazo con nuestros proveedores de grano.</p>
+    </div>
+    <div>
+      <h4 class="font-display text-base font-medium mb-2">Proceso</h4>
+      <p class="text-sm text-ink/65 leading-relaxed">Cada línea responde a un proceso específico — lavado, natural, tradicional — pensado para resaltar el mejor perfil de taza según su uso final.</p>
+    </div>
+    <div>
+      <h4 class="font-display text-base font-medium mb-2">Consistencia</h4>
+      <p class="text-sm text-ink/65 leading-relaxed">Nuestro compromiso no es solo con la calidad inicial, sino con que se mantenga lote tras lote, pedido tras pedido.</p>
+    </div>
+  </div>
+
+  <!-- Capacidad -->
+  <div class="max-w-3xl mx-auto px-6 mt-24 reveal">
+    <div class="border-t border-b border-line py-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+      <div>
+        <p class="font-display text-2xl font-medium">4</p>
+        <p class="text-xs text-ink/55 mt-1">Líneas de café, de consumo masivo a especialidad</p>
+      </div>
+      <div>
+        <p class="font-display text-2xl font-medium">Nacional</p>
+        <p class="text-xs text-ink/55 mt-1">Capacidad logística para abastecer negocios de distinto volumen</p>
+      </div>
+      <div>
+        <p class="font-display text-2xl font-medium">Exportación</p>
+        <p class="text-xs text-ink/55 mt-1">Presencia local con capacidad de llegar más allá de frontera</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-20 reveal">
+    <p class="font-display text-lg mb-6">¿Quieres conocer más sobre cómo trabajamos?</p>
+    <a href="#" data-wa-msg="Hola, quiero saber más sobre BijaoCafé"
+       target="_blank" rel="noopener" class="wa-btn wa-btn-solid">Hablar con BijaoCafé</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PROCESO DEL CAFÉ
+════════════════════════════════════════════════════════════ -->
+<section id="proceso" class="py-24 md:py-32 bg-forest text-paper leaf-texture-dark">
+  <div class="max-w-5xl mx-auto px-6">
+    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 text-caramel/70 mb-4 reveal" stroke="currentColor" stroke-width="1.4">
+      <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-caramel mb-5 reveal">Nuestro proceso</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium mb-6 reveal">De la finca a la taza.</h2>
+    <p class="text-paper/70 max-w-xl leading-relaxed mb-16 reveal">
+      Cada bolsa de BijaoCafé pasa por ocho etapas cuidadas una por una en Finca La Palma y en
+      nuestro proceso de tostión, hasta llegar convertida en una taza que puedas disfrutar.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/></svg>
+        <h3 class="font-display font-medium mb-2">Cultivo</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">El café crece en las montañas de Finca La Palma, cuidado por nuestros caficultores.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/></svg>
+        <h3 class="font-display font-medium mb-2">Recolección</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">Cada cereza se recoge a mano, seleccionando únicamente los granos en su punto justo de maduración.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><path d="M5 13l4 4L19 7"/></svg>
+        <h3 class="font-display font-medium mb-2">Selección</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">Se descartan los granos defectuosos o inmaduros para asegurar un lote parejo y de calidad.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
+        <h3 class="font-display font-medium mb-2">Beneficio</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">Según la línea, aplicamos beneficio lavado o natural para definir el perfil de taza final.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+        <h3 class="font-display font-medium mb-2">Secado</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">El grano se seca lentamente en camas africanas hasta alcanzar la humedad ideal.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><path d="M4 19h16M6 19V9a6 6 0 0112 0v10"/></svg>
+        <h3 class="font-display font-medium mb-2">Tostión</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">Tostamos cada lote controlando tiempo y temperatura para resaltar el mejor perfil de cada línea.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><rect x="4" y="7" width="16" height="13" rx="1.5"/><path d="M8 7V5a4 4 0 018 0v2"/></svg>
+        <h3 class="font-display font-medium mb-2">Empaque</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">Empacamos herméticamente para proteger el aroma y la frescura hasta que llega a tus manos.</p>
+      </div>
+      <div class="proceso-step reveal">
+        <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-paper/80 mb-3" stroke="currentColor" stroke-width="1.4"><path d="M4 21h16M6 21V10h8l3 3v8M9 10V4h4"/></svg>
+        <h3 class="font-display font-medium mb-2">Preparación</h3>
+        <p class="text-sm text-paper/60 leading-relaxed">El último paso es tuyo: prepara tu taza y disfruta el resultado de todo este trabajo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     CATÁLOGO
+════════════════════════════════════════════════════════════ -->
+<section id="catalogo" class="py-16 md:py-32 bg-kraft/25 leaf-texture">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 text-leaf/50 mb-4 reveal" stroke="currentColor" stroke-width="1.4">
+      <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-leaf mb-5 reveal">Catálogo</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium mb-4 reveal">Cuatro líneas. Un mismo estándar.</h2>
+    <p class="text-ink/65 max-w-xl leading-relaxed reveal">
+      Selecciona la línea que mejor se ajuste a tu consumo o a tu negocio. Precios de cliente
+      final. Para cafeterías, negocios y mayoristas, consulta nuestras condiciones especiales en la sección B2B.
+    </p>
+
+    <!-- ─── NATURAL ─────────────────────────────────────── -->
+    <div class="mt-24 pt-20 border-t border-line reveal">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+        <h3 class="font-display text-2xl font-medium">BijaoCafé Natural</h3>
+        <span class="font-mono text-xs text-caramel uppercase tracking-wide">Joya de la corona</span>
+      </div>
+      <p class="text-sm text-ink/65 leading-relaxed max-w-2xl mb-8">
+        Granos 100% excelsos seleccionados (Variedad Bourbon Rosado), secados enteros en cereza
+        para conservar sus azúcares naturales. Una taza compleja y exótica: frutos rojos intensos,
+        frutas tropicales maduras, matices alicorados y un fondo dulce a caramelo y cacao.
+        Por cada pocillo de agua (100 ml) agregue una cucharada de café (7 g aprox.)
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/natural250.jpeg" alt="BijaoCafé Natural 250g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">250 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 30 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$28.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="natural-250" data-name="BijaoCafé Natural"
+                  data-variant="250 g" data-price="28000"
+                  data-img="images/natural250.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/natural500.jpeg" alt="BijaoCafé Natural 500g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">500 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 60 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$50.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="natural-500" data-name="BijaoCafé Natural"
+                  data-variant="500 g" data-price="50000"
+                  data-img="images/natural500.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/natural2500.jpeg" alt="BijaoCafé Natural 2.500g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">2.500 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 300 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$180.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="natural-2500" data-name="BijaoCafé Natural"
+                  data-variant="2.500 g" data-price="180000"
+                  data-img="images/natural2500.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+      <a href="#" data-wa-msg="Hola, quiero cotizar la línea Natural"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-outline mt-8">Cotizar Natural</a>
+    </div>
+
+    <!-- ─── SUAVELAVADO ─────────────────────────────────────── -->
+    <div class="mt-24 pt-20 border-t border-line reveal">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+        <h3 class="font-display text-2xl font-medium">BijaoCafé SuaveLavado</h3>
+        <span class="font-mono text-xs text-caramel uppercase tracking-wide">Especialidad</span>
+      </div>
+      <p class="text-sm text-ink/65 leading-relaxed max-w-2xl mb-8">
+        Granos 100% excelsos seleccionados (Variedad Colombia 2.000), beneficiados por el método
+        tradicional de secado lavado. Una taza inmaculadamente limpia y balanceada, acidez media,
+        con elegantes notas a cacao, caramelo, panela y frutos secos.
+        Por cada pocillo de agua (100 ml) agregue una cucharada de café (7 g aprox.)
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/suavelavado250.jpeg" alt="BijaoCafé SuaveLavado 250g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">250 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 30 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$25.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="suavelavado-250" data-name="BijaoCafé SuaveLavado"
+                  data-variant="250 g" data-price="25000"
+                  data-img="images/suavelavado250.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/suavelavado500.jpeg" alt="BijaoCafé SuaveLavado 500g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">500 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 60 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$40.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="suavelavado-500" data-name="BijaoCafé SuaveLavado"
+                  data-variant="500 g" data-price="40000"
+                  data-img="images/suavelavado500.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/suavelavado2500.jpeg" alt="BijaoCafé SuaveLavado 2.500g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">2.500 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 300 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$160.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="suavelavado-2500" data-name="BijaoCafé SuaveLavado"
+                  data-variant="2.500 g" data-price="160000"
+                  data-img="images/suavelavado2500.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+      <a href="#" data-wa-msg="Hola, quiero cotizar la línea SuaveLavado"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-outline mt-8">Cotizar SuaveLavado</a>
+    </div>
+
+    <!-- ─── TRADICIÓN ─────────────────────────────────────── -->
+    <div class="mt-24 pt-20 border-t border-line reveal">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+        <h3 class="font-display text-2xl font-medium">BijaoCafé Tradición</h3>
+        <span class="font-mono text-xs text-caramel uppercase tracking-wide">Línea intermedia</span>
+      </div>
+      <p class="text-sm text-ink/65 leading-relaxed max-w-2xl mb-8">
+        El puente perfecto entre un café comercial y uno de especialidad. Una taza suave, notablemente
+        menos amarga, con excelente calidad a un precio accesible. La experiencia de un gran café, sin
+        pagar de más. Por cada pocillo de agua (100 ml) agregue una cucharada de café (6 g aprox.)
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/tradicion250.jpeg" alt="BijaoCafé Tradición 250g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">250 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 39–42 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$15.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="tradicion-250" data-name="BijaoCafé Tradición"
+                  data-variant="250 g" data-price="15000"
+                  data-img="images/tradicion250.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/tradicion450.jpeg" alt="BijaoCafé Tradición 450g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">450 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 70–75 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$26.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="tradicion-450" data-name="BijaoCafé Tradición"
+                  data-variant="450 g" data-price="26000"
+                  data-img="images/tradicion450.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <!-- Placeholder for alignment -->
+        <div class="hidden sm:block"></div>
+      </div>
+      <a href="#" data-wa-msg="Hola, quiero cotizar la línea Tradición"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-outline mt-8">Cotizar Tradición</a>
+    </div>
+
+    <!-- ─── RENDIDOR ─────────────────────────────────────── -->
+    <div class="mt-24 pt-20 border-t border-line reveal">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+        <h3 class="font-display text-2xl font-medium">BijaoCafé Rendidor</h3>
+        <span class="font-mono text-xs text-caramel uppercase tracking-wide">Consumo masivo</span>
+      </div>
+      <p class="text-sm text-ink/65 leading-relaxed max-w-2xl mb-8">
+        Para quienes aman el café con cuerpo robusto e intenso. Pensado para negocios de alto volumen
+        que buscan máxima rentabilidad sin sacrificar sabor — hasta un 15–20% más económico que las
+        marcas comerciales tradicionales.
+        Por cada pocillo de agua (100 ml) agregue una cucharada de café (4–5 g aprox.)
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/rendidor250.jpeg" alt="BijaoCafé Rendidor 250g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">250 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 56–67 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$12.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="rendidor-250" data-name="BijaoCafé Rendidor"
+                  data-variant="250 g" data-price="12000"
+                  data-img="images/rendidor250.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/rendidor450.jpeg" alt="BijaoCafé Rendidor 450g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">450 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 100–120 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$20.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="rendidor-450" data-name="BijaoCafé Rendidor"
+                  data-variant="450 g" data-price="20000"
+                  data-img="images/rendidor450.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product"><img src="images/rendidor2500.jpeg" alt="BijaoCafé Rendidor 2.500g" class="lightbox-img" loading="lazy"></div>
+          <p class="font-display font-medium catalog-card-weight">2.500 g</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">Rinde 556–667 tintos (4oz)</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$90.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="rendidor-2500" data-name="BijaoCafé Rendidor"
+                  data-variant="2.500 g" data-price="90000"
+                  data-img="images/rendidor2500.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+      <a href="#" data-wa-msg="Hola, quiero cotizar la línea Rendidor"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-outline mt-8">Cotizar Rendidor</a>
+    </div>
+
+    <!-- ─── ACCESORIOS ─────────────────────────────────────── -->
+    <div class="mt-24 pt-20 border-t border-line reveal">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+        <h3 class="font-display text-2xl font-medium">Accesorios</h3>
+        <span class="font-mono text-xs text-caramel uppercase tracking-wide">Prepara tu café en casa</span>
+      </div>
+      <p class="text-sm text-ink/65 leading-relaxed max-w-2xl mb-8">
+        Los complementos ideales para sacarle el máximo provecho a tu BijaoCafé, desde la molienda
+        hasta la preparación de tu taza.
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+
+        <!-- Prensa Francesa -->
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product">
+            <img src="images/prensa-francesa.jpeg" alt="Prensa Francesa Premium" class="lightbox-img" loading="lazy">
+          </div>
+          <p class="font-display font-medium catalog-card-weight">Prensa Francesa</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">350 ml · 4 a 5 tazas</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$25.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="accesorio-prensa-francesa" data-name="Prensa Francesa Premium"
+                  data-variant="350 ml" data-price="25000"
+                  data-img="images/prensa-francesa.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+
+        <!-- Molino Eléctrico -->
+        <div class="card-hover group bg-paper border border-line p-3 sm:p-4 rounded-xl">
+          <div class="card-img-wrap card-img-product">
+            <img src="images/molino-electrico.jpeg" alt="Molino Eléctrico Compacto" class="lightbox-img" loading="lazy">
+          </div>
+          <p class="font-display font-medium catalog-card-weight">Molino Eléctrico</p>
+          <p class="font-mono text-xs text-ink/55 mt-1 catalog-card-yield">50–100 g · hasta 8 tazas</p>
+          <p class="font-mono text-lg mt-1 sm:mt-2 catalog-card-price">$45.000 <span class="text-xs text-ink/50">COP</span></p>
+          <button class="btn-add-cart"
+                  data-id="accesorio-molino" data-name="Molino Eléctrico"
+                  data-variant="50–100 g" data-price="45000"
+                  data-img="images/molino-electrico.jpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3 shrink-0"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Añadir al carrito
+          </button>
+        </div>
+
+        <!-- Placeholder for alignment -->
+        <div class="hidden md:block"></div>
+      </div>
+
+      <a href="#" data-wa-msg="Hola, quiero información sobre los accesorios (prensa francesa y molino)"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-outline mt-8">Consultar accesorios</a>
+    </div>
+
+    <!-- Cierre catálogo -->
+    <div class="mt-28 pt-16 border-t border-line text-center reveal">
+      <h3 class="font-display text-xl md:text-2xl font-medium mb-3">¿Compras para tu negocio?</h3>
+      <p class="text-sm text-ink/65 max-w-lg mx-auto leading-relaxed mb-8">
+        Cafeterías, restaurantes y distribuidores acceden a descuentos especiales y altamente
+        competitivos. Cotiza tu volumen y te presentamos una propuesta a la medida.
+      </p>
+      <a href="#" data-wa-msg="Hola, quiero cotizar como negocio"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-solid">Cotizar como negocio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     B2B / COMODATOS
+════════════════════════════════════════════════════════════ -->
+<section id="b2b" class="py-24 md:py-32">
+  <div class="max-w-3xl mx-auto px-6">
+    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 text-leaf/50 mb-4 reveal" stroke="currentColor" stroke-width="1.4">
+      <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-leaf mb-5 reveal">Servicios B2B</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium mb-6 reveal">Más que un proveedor. Un aliado de negocio.</h2>
+    <p class="text-ink/70 leading-relaxed reveal">
+      Entendemos que cada negocio tiene necesidades distintas — volumen, tipo de establecimiento,
+      rotación, experiencia de marca. Por eso nuestras condiciones para cafeterías, restaurantes y
+      mayoristas no son un catálogo fijo: son una conversación.
+    </p>
+
+    <!-- Descuentos por volumen -->
+    <div class="mt-20 border-t border-line pt-16 reveal">
+      <h3 class="font-display text-xl font-medium mb-4">Condiciones especiales para negocios</h3>
+      <p class="text-ink/70 leading-relaxed mb-8">
+        Si compras para tu cafetería, restaurante o como distribuidor, manejamos descuentos especiales
+        y altamente competitivos frente al precio de cliente final. Las condiciones dependen de
+        volumen, frecuencia y línea de producto — por eso no publicamos una tarifa mayorista fija:
+        cada negocio recibe una cotización ajustada a su realidad.
+      </p>
+      <a href="#" data-wa-msg="Hola, quiero hacer una cotización para mi negocio"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-outline">Solicitar cotización mayorista</a>
+    </div>
+
+    <!-- Comodato -->
+    <div class="mt-20 border-t border-line pt-16 reveal">
+      <h3 class="font-display text-xl font-medium mb-4">Instalamos. Acompañamos. Suministramos.</h3>
+      <p class="text-ink/70 leading-relaxed mb-5">
+        Contamos con un programa de comodato mediante el cual instalamos máquinas de espresso en
+        establecimientos aliados, con la opción de suministrar los insumos necesarios para su operación.
+      </p>
+      <p class="text-ink/70 leading-relaxed mb-10">
+        Cada caso es distinto: por eso no trabajamos con paquetes genéricos. Realizamos un diagnóstico
+        interno personalizado del establecimiento — su consumo, su espacio, su tipo de cliente — y a
+        partir de ahí construimos una propuesta hecha a la medida.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
+        <div>
+          <p class="font-mono text-xs text-caramel mb-2">01</p>
+          <p class="font-display font-medium mb-1">Contacto inicial</p>
+          <p class="text-sm text-ink/60 leading-relaxed">Nos cuentas sobre tu establecimiento.</p>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-caramel mb-2">02</p>
+          <p class="font-display font-medium mb-1">Diagnóstico personalizado</p>
+          <p class="text-sm text-ink/60 leading-relaxed">Evaluamos tu operación y necesidades.</p>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-caramel mb-2">03</p>
+          <p class="font-display font-medium mb-1">Propuesta a la medida</p>
+          <p class="text-sm text-ink/60 leading-relaxed">Te presentamos una solución ajustada.</p>
+        </div>
+      </div>
+      <a href="#" data-wa-msg="Hola, me interesa la información sobre los Comodatos"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-solid">Quiero información sobre Comodato</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     MARCA BLANCA / EXPORTACIONES
+════════════════════════════════════════════════════════════ -->
+<section id="marca-blanca" class="py-24 md:py-32 bg-forest text-paper leaf-texture-dark">
+  <div class="max-w-3xl mx-auto px-6">
+    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 text-caramel/70 mb-4 reveal" stroke="currentColor" stroke-width="1.4">
+      <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-caramel mb-5 reveal">Marca Blanca &amp; Exportaciones</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium mb-16 reveal">Tu marca. Nuestro café.</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+      <div class="reveal">
+        <h3 class="font-display text-xl font-medium mb-4">Marca Blanca</h3>
+        <p class="text-paper/70 leading-relaxed mb-6">
+          Ofrecemos el servicio de Marca Blanca para todas nuestras líneas de café. Tu negocio,
+          cafetería o proyecto puede contar con un café de calidad respaldado, presentado bajo tu
+          propia marca. El desarrollo de cada proyecto se cotiza directamente con nuestros asesores.
+        </p>
+        <a href="#" data-wa-msg="Hola, quisiera más información sobre el servicio de Marca Blanca"
+           target="_blank" rel="noopener" class="wa-btn border border-paper text-paper hover:bg-paper hover:text-ink">
+          Consultar Marca Blanca
+        </a>
+      </div>
+      <div class="reveal">
+        <h3 class="font-display text-xl font-medium mb-4">Exportaciones</h3>
+        <p class="text-paper/70 leading-relaxed mb-6">
+          Contamos con la capacidad productiva y logística para exportar nuestras líneas de café en
+          verde o tostado, garantizando estándares de calidad sostenibles en el tiempo. Procesos
+          rigurosos y consistentes que llevan el café colombiano más allá de nuestras fronteras.
+        </p>
+        <a href="#" data-wa-msg="Hola, quiero consultar sobre la exportación"
+           target="_blank" rel="noopener" class="wa-btn border border-paper text-paper hover:bg-paper hover:text-ink">
+          Consultar sobre exportación
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-24 pt-16 border-t border-paper/15 reveal">
+      <h3 class="font-display text-xl md:text-2xl font-medium mb-3">Hablemos de tu proyecto.</h3>
+      <p class="text-paper/65 max-w-md mx-auto leading-relaxed mb-8">
+        Ya sea Marca Blanca o exportación, cada proyecto empieza con una conversación con nuestro
+        equipo de asesores.
+      </p>
+      <a href="#" data-wa-msg="Hola, quiero hablar con un asesor"
+         target="_blank" rel="noopener" class="wa-btn bg-paper text-ink hover:bg-caramel hover:text-paper">
+        Escribir a un asesor
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     CONTACTO
+════════════════════════════════════════════════════════════ -->
+<section id="contacto" class="py-24 md:py-32">
+  <div class="max-w-3xl mx-auto px-6">
+    <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 text-leaf/50 mb-4 reveal" stroke="currentColor" stroke-width="1.4">
+      <path d="M12 2C7 6 3 10 3 15c0 3.5 2.7 6 6 6 6 0 9-6 9-13 0-2-1-4-1-4S13 5 12 2Z"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.25em] uppercase text-leaf mb-5 reveal">Contacto</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium mb-6 reveal">Hablemos de tu café.</h2>
+    <p class="text-ink/70 leading-relaxed max-w-xl mb-16 reveal">
+      Escríbenos por el canal que prefieras. Con gusto te ayudamos a elegir tu línea, resolver
+      dudas o preparar una cotización para tu negocio.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-16 reveal">
+      <div>
+        <p class="font-mono text-xs text-caramel uppercase tracking-wide mb-2">WhatsApp</p>
+        <a href="#" data-wa-msg="Hola, quiero más información sobre BijaoCafé" target="_blank" rel="noopener"
+           class="text-ink/80 hover:text-leaf transition">+57 314 571 1786</a>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-caramel uppercase tracking-wide mb-2">Correo electrónico</p>
+        <a href="mailto:bijaocafe12@gmail.com" class="text-ink/80 hover:text-leaf transition">bijaocafe12@gmail.com</a>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-caramel uppercase tracking-wide mb-2">Ubicación</p>
+        <p class="text-ink/80 leading-relaxed">San Francisco, Antioquia — Colombia<br>Finca La Palma</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-caramel uppercase tracking-wide mb-2">Horario de atención</p>
+        <p class="text-ink/80 leading-relaxed">Lunes a viernes: 8:00 a.m. – 6:00 p.m.<br>Sábados: 8:00 a.m. – 4:00 p.m.</p>
+      </div>
+    </div>
+
+    <div class="mb-16 reveal">
+      <p class="font-mono text-xs text-caramel uppercase tracking-wide mb-4">Síguenos</p>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+        <a href="https://instagram.com/bijao.cafe" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2.5 rounded-full border border-line px-4 py-2.5 text-sm text-ink/80 hover:bg-ink hover:text-paper hover:border-ink transition">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-4 h-4 shrink-0"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          @bijao.cafe
+        </a>
+        <a href="https://instagram.com/lapalmaecoindustria" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2.5 rounded-full border border-line px-4 py-2.5 text-sm text-ink/80 hover:bg-ink hover:text-paper hover:border-ink transition">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-4 h-4 shrink-0"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          @lapalmaecoindustria
+        </a>
+      </div>
+      <p class="text-xs text-ink/45 mt-3">@bijao.cafe — BijaoCafé &nbsp;·&nbsp; @lapalmaecoindustria — Finca La Palma</p>
+    </div>
+
+    <div class="reveal">
+      <a href="#" data-wa-msg="Hola, quiero hacer un pedido de BijaoCafé"
+         target="_blank" rel="noopener" class="wa-btn wa-btn-solid">
+        Hacer pedido por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="py-20 bg-paper border-t border-line">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <div class="flex items-center justify-center gap-2.5 font-display font-semibold text-lg mb-3">
+      <img src="images/logo.jpeg" alt="Logo BijaoCafé" class="h-9 w-auto object-contain shrink-0">
+      BijaoCafé
+    </div>
+    <p class="text-sm text-ink/55 mb-8">Café colombiano, hecho con estándar.</p>
+    <a href="#" data-wa-msg="Hola, quiero información sobre BijaoCafé"
+       target="_blank" rel="noopener" class="wa-btn wa-btn-solid">Escríbenos por WhatsApp</a>
+    <nav class="flex flex-wrap items-center justify-center gap-6 mt-12 text-xs text-ink/55">
+      <a href="#home"         class="hover:text-ink transition">Home</a>
+      <a href="#nosotros"     class="hover:text-ink transition">Nosotros</a>
+      <a href="#proceso"      class="hover:text-ink transition">Proceso</a>
+      <a href="#catalogo"     class="hover:text-ink transition">Catálogo</a>
+      <a href="#b2b"          class="hover:text-ink transition">B2B &amp; Comodatos</a>
+      <a href="#marca-blanca" class="hover:text-ink transition">Marca Blanca &amp; Exportaciones</a>
+      <a href="#contacto"     class="hover:text-ink transition">Contacto</a>
+    </nav>
+    <p class="text-[11px] text-ink/35 mt-12">© <span id="year"></span> BijaoCafé. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════
+     FLOATING ELEMENTS
+════════════════════════════════════════════════════════════ -->
+<!-- WA Float -->
+<a href="#" data-wa-msg="Hola, quiero información sobre BijaoCafé"
+   target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.06h-.01a8.1 8.1 0 0 1-4.14-1.14l-.3-.18-3.09.78.82-3.02-.2-.31a8.1 8.1 0 0 1-1.24-4.28c0-4.48 3.65-8.13 8.16-8.13 2.18 0 4.22.85 5.76 2.39a8.06 8.06 0 0 1 2.39 5.75c0 4.48-3.65 8.14-8.15 8.14Zm4.47-6.1c-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.78.97-.14.16-.29.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.36-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.45-.59 1.66-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+</a>
+
+<!-- Cart Float -->
+<button id="cart-float-btn" type="button" aria-label="Ver carrito" class="cart-float">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+  <span id="cart-float-badge" class="cart-float-badge">0</span>
+</button>
+
+<!-- Back to top -->
+<button id="back-to-top" type="button" class="back-to-top" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- Toast -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     LIGHTBOX
+════════════════════════════════════════════════════════════ -->
+<div id="lightbox-overlay" class="lightbox-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Cerrar imagen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img id="lightbox-img" class="lightbox-content" alt="">
+  <p id="lightbox-caption" class="lightbox-caption"></p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     CART DRAWER
+════════════════════════════════════════════════════════════ -->
+<div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+
+<div id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+
+  <!-- Header -->
+  <div class="cart-drawer-header">
+    <h2>Mi pedido <span id="cart-item-count" class="cart-item-count"></span></h2>
+    <button id="cart-close-btn" type="button" class="cart-close-x" aria-label="Cerrar carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="w-4 h-4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <!-- Items list -->
+  <div class="cart-body">
+    <div id="cart-empty-state" class="cart-empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p>Tu carrito está vacío.<br>Agrega productos del catálogo.</p>
+    </div>
+    <div id="cart-items-list" class="cart-items-list" style="display:none;"></div>
+  </div>
+
+  <!-- Shipping form -->
+  <div id="cart-form-section" class="cart-form-section" style="display:none;">
+    <h3>Datos de entrega</h3>
+    <div class="cart-field">
+      <input type="text" id="field-name" class="cart-input" placeholder="Nombre completo *" autocomplete="name">
+    </div>
+    <div class="cart-field">
+      <input type="text" id="field-address" class="cart-input" placeholder="Dirección de entrega *" autocomplete="street-address">
+    </div>
+    <div class="cart-field">
+      <input type="text" id="field-city" class="cart-input" placeholder="Ciudad / Municipio *" autocomplete="address-level2">
+    </div>
+    <div class="cart-field">
+      <textarea id="field-notes" class="cart-textarea" placeholder="Notas adicionales (opcional)"></textarea>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="cart-footer-section" class="cart-footer" style="display:none;">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal productos</span>
+      <span id="cart-total-amount" class="cart-subtotal-amount">$0 COP</span>
+    </div>
+    <div class="cart-shipping-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      El costo de envío <strong>no está incluido</strong>. Se coordina directamente con nuestro asesor una vez confirmado el pedido.
+    </div>
+    <button id="cart-confirm-btn" type="button" class="cart-confirm-btn" disabled>
+      <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.06h-.01a8.1 8.1 0 0 1-4.14-1.14l-.3-.18-3.09.78.82-3.02-.2-.31a8.1 8.1 0 0 1-1.24-4.28c0-4.48 3.65-8.13 8.16-8.13 2.18 0 4.22.85 5.76 2.39a8.06 8.06 0 0 1 2.39 5.75c0 4.48-3.65 8.14-8.15 8.14Zm4.47-6.1c-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.78.97-.14.16-.29.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.36-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.45-.59 1.66-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+      Confirmar pedido por WhatsApp
+    </button>
+    <button id="cart-clear-btn" type="button" class="cart-clear-btn">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════════ -->
+<script>
+/* ============================================================
+   CONFIGURATION
+   ✏️  CAMBIA SOLO ESTE NÚMERO para actualizar todos los botones
+============================================================ */
+const WHATSAPP_NUMBER = '573145711786';
+
+/* ============================================================
+   IMAGE PLACEHOLDER (fallback cuando no hay imagen)
+============================================================ */
+const PLACEHOLDER_SVG = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23E9DDBE'/><path d='M200 100c-45 30-85 72-85 118 0 32 24 55 55 55 60 0 90-55 90-120 0-18-8-36-8-36s-30 6-52-17Z' fill='none' stroke='%233F5D3A' stroke-width='3' stroke-opacity='0.3'/><text x='200' y='295' font-family='sans-serif' font-size='18' fill='%23B98B4E' text-anchor='middle' font-weight='600'>BijaoCafé</text></svg>`;
+
+/* ============================================================
+   WA LINK BUILDER  →  processes all [data-wa-msg] elements
+============================================================ */
+function buildWaLinks() {
+  document.querySelectorAll('[data-wa-msg]').forEach(el => {
+    const msg = el.getAttribute('data-wa-msg');
+    el.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  });
+}
+
+/* ============================================================
+   IMAGE ERROR HANDLER
+============================================================ */
+function setupImageFallback() {
+  document.querySelectorAll('img:not(#lightbox-img)').forEach(img => {
+    img.addEventListener('error', function() {
+      if (this.src !== PLACEHOLDER_SVG) {
+        this.onerror = null;
+        this.src = PLACEHOLDER_SVG;
+        this.classList.add('bc-placeholder');
+      }
+    });
+  });
+}
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+function setupMobileMenu() {
+  const toggle  = document.getElementById('menu-toggle');
+  const menu    = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+
+  const open = () => {
+    toggle.classList.add('is-open');
+    menu.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Cerrar menú');
+  };
+  const close = () => {
+    toggle.classList.remove('is-open');
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+  };
+
+  toggle.addEventListener('click', () =>
+    menu.classList.contains('is-open') ? close() : open()
+  );
+  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+}
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+function setupReveal() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+/* ============================================================
+   BACK TO TOP
+============================================================ */
+function setupBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('is-visible', window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+/* ============================================================
+   LIGHTBOX  (abre la foto en un tamaño más grande, sin zoom al pasar el cursor)
+============================================================ */
+function setupLightbox() {
+  const overlay  = document.getElementById('lightbox-overlay');
+  const imgEl    = document.getElementById('lightbox-img');
+  const caption  = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+  if (!overlay || !imgEl) return;
+
+  // Ajusta la foto COMPLETA al espacio disponible de la pantalla (se amplía, sin recortar ni hacer zoom)
+  const fitImage = () => {
+    const nw = imgEl.naturalWidth, nh = imgEl.naturalHeight;
+    if (!nw || !nh) return;
+    const vv   = window.visualViewport;
+    const vw   = vv ? vv.width  : window.innerWidth;
+    const vh   = vv ? vv.height : window.innerHeight;
+    const maxW = Math.min(vw * 0.92, 900);
+    const maxH = vh * 0.80;
+    const k    = Math.min(maxW / nw, maxH / nh);
+    imgEl.style.width  = Math.round(nw * k) + 'px';
+    imgEl.style.height = Math.round(nh * k) + 'px';
+  };
+  imgEl.addEventListener('load', fitImage);
+  window.addEventListener('resize', () => { if (overlay.classList.contains('is-open')) fitImage(); });
+
+  const openLightbox = (srcImg) => {
+    imgEl.classList.remove('bc-placeholder');
+    imgEl.style.width = '';
+    imgEl.style.height = '';
+    imgEl.alt = srcImg.alt || '';
+    imgEl.src = srcImg.currentSrc || srcImg.src;
+    caption.textContent = srcImg.alt || '';
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeLightbox = () => {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => { if (!overlay.classList.contains('is-open')) imgEl.removeAttribute('src'); }, 300);
+  };
+
+  document.querySelectorAll('.lightbox-img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img));
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+}
+
+/* ============================================================
+   YEAR
+============================================================ */
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ============================================================
+   ░░░░░░░  CART SYSTEM  ░░░░░░░
+============================================================ */
+
+// ─── State ──────────────────────────────────────────────────
+const CART_KEY = 'bijao_cart_v1';
+let cart = { items: [] };
+
+// ─── Persistence ────────────────────────────────────────────
+function loadCart() {
+  try {
+    const stored = localStorage.getItem(CART_KEY);
+    if (stored) cart = JSON.parse(stored);
+  } catch(e) { cart = { items: [] }; }
+}
+function saveCart() {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e) {}
+}
+
+// ─── Helpers ────────────────────────────────────────────────
+function formatCOP(amount) {
+  return '$' + amount.toLocaleString('es-CO') + ' COP';
+}
+function cartTotal() {
+  return cart.items.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+function cartCount() {
+  return cart.items.reduce((sum, item) => sum + item.qty, 0);
+}
+
+// ─── Toast ──────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('is-visible'), 2200);
+}
+
+// ─── Badge update ────────────────────────────────────────────
+function updateBadges() {
+  const count = cartCount();
+  const str   = count > 0 ? String(count > 99 ? '99+' : count) : '';
+  const hasItems = count > 0;
+
+  ['cart-nav-badge', 'cart-float-badge'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = str;
+    el.classList.toggle('has-items', hasItems);
+  });
+
+  const countEl = document.getElementById('cart-item-count');
+  if (countEl) countEl.textContent = count > 0 ? `(${count})` : '';
+}
+
+// ─── Open / close drawer ─────────────────────────────────────
+const drawerEl  = document.getElementById('cart-drawer');
+const overlayEl = document.getElementById('cart-overlay');
+
+function openCart() {
+  if (!drawerEl || !overlayEl) return;
+  renderCartItems();
+  drawerEl.classList.add('is-open');
+  overlayEl.classList.add('is-open');
+  overlayEl.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  if (!drawerEl || !overlayEl) return;
+  drawerEl.classList.remove('is-open');
+  overlayEl.classList.remove('is-open');
+  overlayEl.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// ─── Render cart items ───────────────────────────────────────
+function renderCartItems() {
+  const listEl      = document.getElementById('cart-items-list');
+  const emptyEl     = document.getElementById('cart-empty-state');
+  const formSection = document.getElementById('cart-form-section');
+  const footerSect  = document.getElementById('cart-footer-section');
+  const totalEl     = document.getElementById('cart-total-amount');
+  const confirmBtn  = document.getElementById('cart-confirm-btn');
+  if (!listEl || !emptyEl) return;
+
+  const hasItems = cart.items.length > 0;
+
+  emptyEl.style.display   = hasItems ? 'none' : 'flex';
+  listEl.style.display     = hasItems ? 'block' : 'none';
+  if (formSection) formSection.style.display = hasItems ? 'block' : 'none';
+  if (footerSect)  footerSect.style.display  = hasItems ? 'block' : 'none';
+
+  if (!hasItems) return;
+
+  // Build items HTML
+  listEl.innerHTML = cart.items.map(item => `
+    <div class="cart-item">
+      <img src="${item.img || PLACEHOLDER_SVG}" alt="${item.name}" class="cart-item-thumb"
+           onerror="this.src='${PLACEHOLDER_SVG}'">
+      <div class="cart-item-info">
+        <p class="cart-item-name">${item.name}</p>
+        <p class="cart-item-variant">${item.variant}</p>
+        <p class="cart-item-price">${formatCOP(item.price)}</p>
+        <div class="cart-item-actions">
+          <button class="cart-qty-btn" data-action="dec" data-id="${item.id}" aria-label="Reducir cantidad">−</button>
+          <span class="cart-qty-num">${item.qty}</span>
+          <button class="cart-qty-btn" data-action="inc" data-id="${item.id}" aria-label="Aumentar cantidad">+</button>
+          <button class="cart-item-remove" data-action="remove" data-id="${item.id}" aria-label="Eliminar producto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Qty / remove events
+  listEl.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id     = btn.getAttribute('data-id');
+      const action = btn.getAttribute('data-action');
+      if (action === 'inc')    updateQty(id, 1);
+      if (action === 'dec')    updateQty(id, -1);
+      if (action === 'remove') removeItem(id);
+    });
+  });
+
+  // Total
+  if (totalEl) totalEl.textContent = formatCOP(cartTotal());
+
+  // Confirm button state driven by form validation
+  updateConfirmBtn();
+}
+
+// ─── Update confirm button ───────────────────────────────────
+function updateConfirmBtn() {
+  const btn  = document.getElementById('cart-confirm-btn');
+  if (!btn) return;
+  const name    = (document.getElementById('field-name')?.value || '').trim();
+  const address = (document.getElementById('field-address')?.value || '').trim();
+  const city    = (document.getElementById('field-city')?.value || '').trim();
+  btn.disabled  = !(cart.items.length > 0 && name && address && city);
+}
+
+// ─── Cart actions ────────────────────────────────────────────
+function addItem(data) {
+  const existing = cart.items.find(i => i.id === data.id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.items.push({
+      id:      data.id,
+      name:    data.name,
+      variant: data.variant,
+      price:   parseInt(data.price, 10),
+      img:     data.img || '',
+      qty:     1,
+    });
+  }
+  saveCart();
+  updateBadges();
+}
+
+function updateQty(id, delta) {
+  const item = cart.items.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { removeItem(id); return; }
+  saveCart();
+  updateBadges();
+  renderCartItems();
+}
+
+function removeItem(id) {
+  cart.items = cart.items.filter(i => i.id !== id);
+  saveCart();
+  updateBadges();
+  renderCartItems();
+}
+
+function clearCart() {
+  cart.items = [];
+  saveCart();
+  updateBadges();
+  renderCartItems();
+}
+
+// ─── Build WhatsApp order message ────────────────────────────
+function buildOrderMessage() {
+  const name    = (document.getElementById('field-name')?.value    || '').trim();
+  const address = (document.getElementById('field-address')?.value || '').trim();
+  const city    = (document.getElementById('field-city')?.value    || '').trim();
+  const notes   = (document.getElementById('field-notes')?.value   || '').trim();
+
+  // Número de referencia corto basado en timestamp
+  const ref = 'BC-' + Date.now().toString().slice(-6);
+
+  // Líneas de productos con alineación
+  const detail = cart.items.map(i => {
+    const subtotal = formatCOP(i.price * i.qty);
+    return `  ${i.qty}× ${i.name} (${i.variant})\n       Subtotal: ${subtotal}`;
+  }).join('\n\n');
+
+  const lines = [
+    `*BIJAOCAFÉ — SOLICITUD DE PEDIDO*`,
+    `Referencia: ${ref}`,
+    ``,
+    `▸ *DATOS DEL CLIENTE*`,
+    `Nombre:      ${name}`,
+    `Dirección:   ${address}`,
+    `Ciudad:      ${city}`,
+  ];
+
+  if (notes) lines.push(`Observaciones: ${notes}`);
+
+  lines.push(
+    ``,
+    `▸ *PRODUCTOS SOLICITADOS*`,
+    ``,
+    detail,
+    ``,
+    `▸ *RESUMEN*`,
+    `Subtotal (productos): ${formatCOP(cartTotal())}`,
+    `Envío:                A coordinar con asesor`,
+    ``,
+    `—`,
+    `Buenos días. Le comparto mi solicitud de pedido con referencia ${ref}.`,
+    `Quedo atento/a para coordinar el método de pago y el costo de envío a ${city}.`,
+    `Muchas gracias.`
+  );
+
+  return lines.join('\n');
+}
+
+// ─── Send order ──────────────────────────────────────────────
+function confirmOrder() {
+  const name    = (document.getElementById('field-name')?.value    || '').trim();
+  const address = (document.getElementById('field-address')?.value || '').trim();
+  const city    = (document.getElementById('field-city')?.value    || '').trim();
+
+  // Validate
+  let valid = true;
+  [
+    { id: 'field-name',    val: name },
+    { id: 'field-address', val: address },
+    { id: 'field-city',    val: city },
+  ].forEach(({ id, val }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (!val) { el.classList.add('is-invalid'); valid = false; }
+    else       { el.classList.remove('is-invalid'); }
+  });
+
+  if (!valid) {
+    showToast('⚠️ Completa los campos obligatorios');
+    return;
+  }
+
+  const msg = buildOrderMessage();
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank', 'noopener');
+}
+
+// ─── Cart event bindings ─────────────────────────────────────
+function setupCart() {
+  loadCart();
+  updateBadges();
+
+  // Open triggers
+  ['cart-nav-btn', 'cart-float-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', openCart);
+  });
+
+  // Close triggers
+  const closeBtn = document.getElementById('cart-close-btn');
+  if (closeBtn)  closeBtn.addEventListener('click', closeCart);
+  if (overlayEl) overlayEl.addEventListener('click', closeCart);
+
+  // Escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+
+  // Clear cart
+  const clearBtn = document.getElementById('cart-clear-btn');
+  if (clearBtn) clearBtn.addEventListener('click', () => { clearCart(); });
+
+  // Confirm order
+  const confirmBtn = document.getElementById('cart-confirm-btn');
+  if (confirmBtn) confirmBtn.addEventListener('click', confirmOrder);
+
+  // Form fields → live validation
+  ['field-name', 'field-address', 'field-city', 'field-notes'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      el.classList.remove('is-invalid');
+      updateConfirmBtn();
+    });
+  });
+
+  // Add to cart buttons
+  document.querySelectorAll('.btn-add-cart').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const data = {
+        id:      btn.getAttribute('data-id'),
+        name:    btn.getAttribute('data-name'),
+        variant: btn.getAttribute('data-variant'),
+        price:   btn.getAttribute('data-price'),
+        img:     btn.getAttribute('data-img'),
+      };
+      addItem(data);
+      showToast(`✓ ${data.name} (${data.variant}) agregado`);
+
+      // Visual feedback on button
+      const origHTML = btn.innerHTML;
+      btn.classList.add('is-added');
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-3 h-3 shrink-0"><path d="M5 13l4 4L19 7"/></svg> ¡Añadido!`;
+      setTimeout(() => {
+        btn.classList.remove('is-added');
+        btn.innerHTML = origHTML;
+      }, 1600);
+    });
+  });
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  buildWaLinks();
+  setupImageFallback();
+  setupMobileMenu();
+  setupReveal();
+  setupBackToTop();
+  setupLightbox();
+  setupCart();
+});
+</script>
+</body>
+</html>
